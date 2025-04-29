@@ -9,9 +9,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class WebSocketController {
 
-   @MessageMapping("/chat{id}")
+   @MessageMapping("/chat/{id}")
     @SendTo("/topic/{id}")
     public ChatMessage chat(@DestinationVariable String id, ChatMessage message) {
+       System.out.println(message);
        return new ChatMessage(message.getMessage(),message.getUser());
    }
 }
